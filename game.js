@@ -30,7 +30,7 @@ $(".btn").click(function(){
 
     checkAnswer(userClickedButtons.length - 1);
   }
-})
+});
 
 
 //Function that creates a new random sequence, increases the level and its title, adds a new animation to the button and play its audio.
