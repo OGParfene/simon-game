@@ -15,16 +15,21 @@ $(document).keypress(function() {
   }
 });
 
-//Function over the buttons that detects if any of them has been pressed and if it is clicked we play an audio of that colour, we add an animation and we check the answer
-$(".btn").click(function() {
+//Function that detects if a button is pressed, if the game isnt started, starts the game and if its already started, plays an audio of that colour, we add an animation and we check the answer
+$(".btn").click(function(){
+  if (!started) {
+    $("#level-title").text("Level " + level);
+    nextSequence();
+    started = true;
+  }else{
+    var userChosenColour = this.getAttribute("id");
+    userClickedButtons.push(userChosenColour);
 
-  var userChosenColour = this.getAttribute("id");
-  userClickedButtons.push(userChosenColour);
+    playAudio(userChosenColour);
+    animatePress(userChosenColour);
 
-  playAudio(userChosenColour);
-  animatePress(userChosenColour);
-
-  checkAnswer(userClickedButtons.length - 1);
+    checkAnswer(userClickedButtons.length - 1);
+  }
 })
 
 //Function that creates a new random sequence, increases the level and its title, adds a new animation to the button and play its audio.
